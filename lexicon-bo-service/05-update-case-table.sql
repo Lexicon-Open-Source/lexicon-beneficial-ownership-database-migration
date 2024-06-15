@@ -71,8 +71,19 @@ ALTER TABLE cases ADD COLUMN created_by bpchar(26);
 ALTER TABLE cases ADD COLUMN updated_by bpchar(26);
 ALTER TABLE cases ADD COLUMN deleted_by bpchar(26);
 
--- drop index idx_search_filter
-DROP INDEX public.idx_search_filter;
+-- add column subject_type_temp
+ALTER TABLE cases ADD COLUMN subject_type_temp smallint;
+
+-- update subject_type_temp from subject type, if subject type is individual then value 1, else 2
+UPDATE cases SET subject_type_temp = 1 WHERE subject_type = 'individual';
+UPDATE cases SET subject_type_temp = 2 WHERE subject_type = 'company';
+UPDATE cases SET subject_type_temp = 3 WHERE subject_type = 'organization';
+
+-- delete subject_type
+ALTER TABLE cases DROP COLUMN subject_type;
+
+-- rename subject_type_temp to subject_type
+ALTER TABLE cases RENAME COLUMN subject_type_temp TO subject_type
 
 -- create new one
 CREATE INDEX idx_search_filter ON cases (subject_type, year, case_type, nation, "status");
