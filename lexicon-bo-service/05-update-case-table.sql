@@ -66,6 +66,9 @@ WHERE POSITION('s/d' IN c.punishment_duration) > 0;
 -- Add status column
 ALTER TABLE cases ADD COLUMN "status" smallint DEFAULT 2;
 
+-- set existing data to 1
+UPDATE cases SET "status" = 1;
+
 -- add CreatedBy, UpdatedBy, DeletedBy
 ALTER TABLE cases ADD COLUMN created_by bpchar(26);
 ALTER TABLE cases ADD COLUMN updated_by bpchar(26);
