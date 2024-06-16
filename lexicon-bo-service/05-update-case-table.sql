@@ -90,3 +90,6 @@ ALTER TABLE cases RENAME COLUMN subject_type_temp TO subject_type
 
 -- create new one
 CREATE INDEX idx_search_filter ON cases (subject_type, year, case_type, nation, "status");
+
+--change dash to null in person in charge
+UPDATE cases SET person_in_charge = NULL WHERE person_in_charge = '-';
