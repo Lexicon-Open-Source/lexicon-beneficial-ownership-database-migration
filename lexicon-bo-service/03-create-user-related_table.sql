@@ -12,7 +12,7 @@ CREATE TABLE "users" (
     "updated_at" timestamp NULL,
     "two_factor_secret" text NULL,
     "two_factor_recovery_codes" text NULL,
-    "two_factor_confirmed_at" timestamp NULL,
+    "two_factor_confirmed_at" timestamp NULL
 );
 
 -- Create Password Reset Token Table
