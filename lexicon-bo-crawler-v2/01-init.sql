@@ -9,9 +9,9 @@ CREATE TABLE "url_frontiers" (
   "url" varchar(255) NOT NULL,
   "crawler" varchar(255) NOT NULL,
   "status" smallint NOT NULL DEFAULT 0,
-  "metadata" jsonb NULL
+  "metadata" jsonb NULL,
   "created_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  "updated_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updated_at" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 ALTER TABLE url_frontiers ADD CONSTRAINT url_frontiers_unique UNIQUE (url);
 
